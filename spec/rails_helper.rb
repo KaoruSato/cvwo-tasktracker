@@ -39,7 +39,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   # Database Cleaner
-  config.before(:each) do
+  config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end

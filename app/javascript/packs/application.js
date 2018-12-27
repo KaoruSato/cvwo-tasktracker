@@ -7,8 +7,11 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
+// react-rails
 const ReactRailsUJS = require('react_ujs');
 const componentRequireContext = require.context('../src', true);
 ReactRailsUJS.useContext(componentRequireContext);
 
+// Styles
+require('bulma');
 require('../src/App.scss');

@@ -25,31 +25,54 @@ jobs:
           POSTGRES_DB: cvwo_tasktracker
           POSTGRES_PASSWORD: ''
 
-    working_directory: ~/repo
+    working_directory: ~/tasktracker
 
     steps:
       - checkout
 
       # Download and cache dependencies
       - restore_cache:
+          name: Restore bundle cache
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - tasktracker-v1-bundle-{{ checksum "Gemfile.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - tasktracker-v1-bundle-
+
+      - restore_cache:
+          name: Restore yarn cache
+          keys:
+            - tasktracker-v1-yarn-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - tasktracker-v1-yarn-
 
       - run:
-          name: install dependencies
+          name: bundle install
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
+      - run:
+          name: yarn install
+          command: |
+            yarn install
+
       - save_cache:
+          name: Save bundle cache
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: tasktracker-v1-bundle-{{ checksum "Gemfile.lock" }}
+
+      - save_cache:
+          name: Save yarn cache
+          paths:
+            - ./node_modules
+          key: tasktracker-v1-yarn-{{ checksum "yarn.lock" }}
 
       # Database setup
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
+
+      # webpacker
+      - run: RAILS_ENV=test bundle exec rails webpacker:compile
 
       # run tests!
       - run:
@@ -62,5 +85,5 @@ jobs:
 
       # collect reports
       - store_artifacts:
-          path: ~/repo/coverage
+          path: ~/tasktracker/coverage
           destination: coverage

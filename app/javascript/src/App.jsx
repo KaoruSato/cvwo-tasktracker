@@ -4,6 +4,7 @@ const api = require('./utilities/api');
 const tagHandlers = require('./handlers/tagHandlers');
 
 const Sidebar = require('./components/Sidebar');
+const TaskList = require('./components/TaskList');
 
 class App extends React.Component {
   constructor(props) {
@@ -76,7 +77,9 @@ class App extends React.Component {
           tagHandlers={tagHandlers(this)}
         />
 
-        <div className="column">Content</div>
+        <TaskList
+          tasks={this.state.tasks}
+        />
       </div>
     );
   }

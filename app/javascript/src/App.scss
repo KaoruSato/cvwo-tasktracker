@@ -1,6 +1,21 @@
+// Global
 #root {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+}
+
+// Variables
+$common-spacing: 1em;
+
+// Components
+.sidebar {
+  .overview {
+    margin-bottom: $common-spacing;
+
+    h1 span {
+      display: block;
+    }
+  }
 }

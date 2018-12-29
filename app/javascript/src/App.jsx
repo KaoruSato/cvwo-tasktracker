@@ -1,6 +1,7 @@
 const React = require('react');
 
 const api = require('./utilities/api');
+const Sidebar = require('./components/Sidebar');
 
 class App extends React.Component {
   constructor(props) {
@@ -54,7 +55,16 @@ class App extends React.Component {
   }
 
   render() {
-    return <div>App</div>;
+    return (
+      <div className="columns">
+        <Sidebar
+          tasks={this.state.tasks}
+          tags={this.state.tags}
+        />
+
+        <div className="column">Content</div>
+      </div>
+    );
   }
 }
 

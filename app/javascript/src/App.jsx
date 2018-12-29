@@ -12,19 +12,29 @@ class App extends React.Component {
     this.state = {
       tasks: [],
       tags: [],
-      error: null
+      isLoading: true
     }
 
-    this.fetchData = this.fetchData.bind(this);
+    this.fetchAll = this.fetchAll.bind(this);
+    this.fetchTasks = this.fetchTasks.bind(this);
+    this.fetchTags = this.fetchTags.bind(this);
   }
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchAll();
   }
 
-  fetchData() {
-    // Fetch tasks
-    api.getTasks()
+  fetchAll() {
+    Promise.all([this.fetchTasks(), this.fetchTags()])
+      .then(r => {
+        this.setState({
+          isLoading: false
+        });
+      });
+  }
+
+  fetchTasks() {
+    return api.getTasks()
       .then(res => res.json())
       .then(
         res => {
@@ -33,14 +43,13 @@ class App extends React.Component {
           });
         },
         err => {
-          this.setState({
-            error: err
-          });
+          console.error(err);
         }
-      );
+      )
+  }
 
-    // Fetch tags
-    api.getTags()
+  fetchTags() {
+    return api.getTags()
       .then(res => res.json())
       .then(
         res => {
@@ -49,14 +58,16 @@ class App extends React.Component {
           });
         },
         err => {
-          this.setState({
-            error: err
-          });
+          console.error(err);
         }
       );
   }
 
   render() {
+    if (this.state.isLoading) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <div className="columns">
         <Sidebar

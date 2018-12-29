@@ -2,14 +2,21 @@ const React = require('react');
 
 class Task extends React.Component {
   render() {
+    const task = this.props.task;
+
     return (
       <div className="media">
         <div className="media-left">
-          <input type="checkbox" />
+          <input
+            name="done"
+            type="checkbox"
+            checked={task.done}
+            onChange={this.props.handleChange}
+          />
         </div>
 
         <div className="media-content">
-          <span>{this.props.task.title}</span>
+          <span>{task.title}</span>
         </div>
 
         <div className="media-right buttons">

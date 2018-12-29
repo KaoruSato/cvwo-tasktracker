@@ -2,6 +2,7 @@ const React = require('react');
 
 const api = require('./utilities/api');
 const tagHandlers = require('./handlers/tagHandlers');
+const taskHandlers = require('./handlers/taskHandlers');
 
 const Sidebar = require('./components/Sidebar');
 const TaskList = require('./components/TaskList');
@@ -79,6 +80,7 @@ class App extends React.Component {
 
         <TaskList
           tasks={this.state.tasks}
+          taskHandlers={taskHandlers(this)}
         />
       </div>
     );

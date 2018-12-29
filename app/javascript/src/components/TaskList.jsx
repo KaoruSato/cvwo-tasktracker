@@ -9,6 +9,7 @@ class TaskList extends React.Component {
         <Task
           key={task.id}
           task={task}
+          handleChange={(e) => this.props.taskHandlers.handleChange(task.id, e)}
         />
       );
     });

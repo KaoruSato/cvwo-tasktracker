@@ -11,9 +11,15 @@ class App extends React.Component {
       tags: [],
       error: null
     }
+
+    this.fetchData = this.fetchData.bind(this);
   }
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
     // Fetch tasks
     api.getTasks()
       .then(res => res.json())
@@ -32,19 +38,19 @@ class App extends React.Component {
 
     // Fetch tags
     api.getTags()
-    .then(res => res.json())
-    .then(
-      res => {
-        this.setState({
-          tags: res
-        });
-      },
-      err => {
-        this.setState({
-          error: err
-        });
-      }
-    );
+      .then(res => res.json())
+      .then(
+        res => {
+          this.setState({
+            tags: res
+          });
+        },
+        err => {
+          this.setState({
+            error: err
+          });
+        }
+      );
   }
 
   render() {

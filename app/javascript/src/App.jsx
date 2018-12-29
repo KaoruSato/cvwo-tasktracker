@@ -1,6 +1,8 @@
 const React = require('react');
 
 const api = require('./utilities/api');
+const tagHandlers = require('./handlers/tagHandlers');
+
 const Sidebar = require('./components/Sidebar');
 
 class App extends React.Component {
@@ -60,6 +62,7 @@ class App extends React.Component {
         <Sidebar
           tasks={this.state.tasks}
           tags={this.state.tags}
+          tagHandlers={tagHandlers(this)}
         />
 
         <div className="column">Content</div>

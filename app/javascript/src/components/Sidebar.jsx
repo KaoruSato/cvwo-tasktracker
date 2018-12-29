@@ -15,6 +15,7 @@ class Sidebar extends React.Component {
 
         <TagList
           tags={this.props.tags}
+          tagHandlers={this.props.tagHandlers}
         />
       </header>
     );

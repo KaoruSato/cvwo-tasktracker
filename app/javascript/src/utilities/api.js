@@ -6,6 +6,11 @@ const api = {
   },
   getTags: () => {
     return fetch(`${root}/tags`);
+  },
+  deleteTag: id => {
+    return fetch(`${root}/tags/${id}`, {
+      method: 'DELETE'
+    });
   }
 }
 

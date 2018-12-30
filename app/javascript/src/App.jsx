@@ -6,6 +6,7 @@ const taskHandlers = require('./handlers/taskHandlers');
 
 const Sidebar = require('./components/Sidebar');
 const TaskList = require('./components/TaskList');
+const TaskModal = require('./components/TaskModal');
 
 class App extends React.Component {
   constructor(props) {
@@ -14,12 +15,16 @@ class App extends React.Component {
     this.state = {
       tasks: [],
       tags: [],
-      isLoading: true
+      isLoading: true,
+
+      taskModalID: null,
+      taskModalOpen: false
     }
 
     this.fetchAll = this.fetchAll.bind(this);
     this.fetchTasks = this.fetchTasks.bind(this);
     this.fetchTags = this.fetchTags.bind(this);
+    this.resetModals = this.resetModals.bind(this);
   }
 
   componentDidMount() {
@@ -65,9 +70,31 @@ class App extends React.Component {
       );
   }
 
+  resetModals() {
+    this.setState({
+      taskModalID: null,
+      taskModalOpen: false
+    });
+  }
+
   render() {
     if (this.state.isLoading) {
       return <div>Loading...</div>;
+    }
+
+    let taskModal;
+    if (this.state.taskModalOpen) {
+      taskModal = (
+        <TaskModal
+          isOpen={this.state.taskModalOpen}
+          resetModals={this.resetModals}
+          taskID={this.state.taskModalID}
+
+          tasks={this.state.tasks}
+          tags={this.state.tags}
+          taskHandlers={taskHandlers(this)}
+        />
+      );
     }
 
     return (
@@ -82,6 +109,8 @@ class App extends React.Component {
           tasks={this.state.tasks}
           taskHandlers={taskHandlers(this)}
         />
+
+        {taskModal}
       </div>
     );
   }

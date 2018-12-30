@@ -10,6 +10,7 @@ class TaskList extends React.Component {
           key={task.id}
           task={task}
           handleToggle={(e) => this.props.taskHandlers.handleToggle(task.id, e)}
+          handleEdit={() => this.props.taskHandlers.handleEdit(task.id)}
         />
       );
     });

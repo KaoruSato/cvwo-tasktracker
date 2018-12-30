@@ -20,7 +20,11 @@ class Task extends React.Component {
         </div>
 
         <div className="media-right buttons">
-          <a className="button is-small is-link is-outlined">Edit</a>
+          <a
+            className="button is-small is-link is-outlined"
+            onClick={this.props.handleEdit}
+          >Edit</a>
+
           <a className="button is-small is-danger is-outlined">Delete</a>
         </div>
       </div>

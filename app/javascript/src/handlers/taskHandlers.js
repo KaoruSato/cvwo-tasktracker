@@ -64,6 +64,14 @@ module.exports = (env) => {
       });
     },
 
+    handleSearchChange: (e) => {
+      const value = e.target.value;
+
+      env.setState({
+        tasksFilterTerm: value
+      });
+    },
+
     handleUpdate: (task) => {
       // Fix empty tag
       if (task.tag_id === '') {

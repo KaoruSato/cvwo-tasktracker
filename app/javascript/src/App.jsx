@@ -14,7 +14,9 @@ class App extends React.Component {
 
     this.state = {
       tasks: [],
+      tasksFilterTerm: '',
       tags: [],
+
       isLoading: true,
 
       taskModalID: null,
@@ -83,6 +85,7 @@ class App extends React.Component {
 
         <TaskList
           tasks={this.state.tasks}
+          tasksFilterTerm={this.state.tasksFilterTerm}
           taskHandlers={taskHandlers(this)}
         />
 

@@ -4,6 +4,7 @@ const api = {
   getTasks: () => {
     return fetch(`${root}/tasks`);
   },
+
   createTask: (task) => {
     return fetch(`${root}/tasks`, {
       method: 'POST',
@@ -15,6 +16,7 @@ const api = {
       })
     });
   },
+
   editTask: (task) => {
     return fetch(`${root}/tasks/${task.id}`, {
       method: 'PUT',

@@ -87,8 +87,8 @@ class App extends React.Component {
       taskModal = (
         <TaskModal
           isOpen={this.state.taskModalOpen}
-          resetModals={this.resetModals}
           taskID={this.state.taskModalID}
+          resetModals={this.resetModals}
 
           tasks={this.state.tasks}
           tags={this.state.tags}

@@ -9,6 +9,8 @@ class TaskModal extends React.Component {
 
     if (this.props.taskID) {
       const task = this.props.tasks.filter(t => t.id === this.props.taskID)[0];
+
+      // Fix empty tag
       if (!task.tag_id) {
         task.tag_id = '';
       }
@@ -41,11 +43,13 @@ class TaskModal extends React.Component {
       value = e.target.value === '' ? '' : parseInt(e.target.value);
     }
 
-    const newTask = this.state.task;
-    newTask[name] = value;
+    this.setState(state => {
+      const newTask = state.task;
+      newTask[name] = value;
 
-    this.setState({
-      task: newTask
+      return {
+        task: newTask
+      }
     });
   }
 
@@ -53,7 +57,7 @@ class TaskModal extends React.Component {
     e.preventDefault();
 
     if (this.state.task.id) {
-      this.props.taskHandlers.handleSubmit(this.state.task);
+      this.props.taskHandlers.handleUpdate(this.state.task);
     } else {
       this.props.taskHandlers.handleCreate(this.state.task);
     }
@@ -87,7 +91,7 @@ class TaskModal extends React.Component {
 
           <div className="field">
             <div className="control">
-              <div className="select">
+              <div className="select is-fullwidth ">
                 <select
                   name="tag_id"
                   value={this.state.task.tag_id}
@@ -105,9 +109,7 @@ class TaskModal extends React.Component {
               <a
                 className="button is-small is-outlined"
                 onClick={this.props.resetModals}
-              >
-                Cancel
-              </a>
+              >Cancel</a>
             </p>
 
             <p className="control">

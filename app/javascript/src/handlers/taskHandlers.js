@@ -51,6 +51,28 @@ module.exports = (env) => {
         );
     },
 
+    handleDeleteButton: (id) => {
+      if (confirm('Are you sure you want to delete this task?')) {
+        // Optimistic state update
+        env.setState(state => {
+          return {
+            tasks: state.tasks.filter(t => t.id !== id)
+          }
+        });
+
+        // Persist to backend
+        api.deleteTask(id)
+          .then(
+            _ => {
+              env.fetchAll();
+            },
+            err => {
+              console.error(err);
+            }
+          );
+      }
+    },
+
     handleDoneToggle: (id, e) => {
       const value = e.target.checked;
 

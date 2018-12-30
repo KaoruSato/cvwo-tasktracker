@@ -26,6 +26,11 @@ const api = {
       })
     });
   },
+  deleteTask: (id) => {
+    return fetch(`${root}/tasks/${id}`, {
+      method: 'DELETE'
+    });
+  },
   getTags: () => {
     return fetch(`${root}/tags`);
   },

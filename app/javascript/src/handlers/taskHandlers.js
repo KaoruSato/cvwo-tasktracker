@@ -3,6 +3,11 @@ const api = require('../utilities/api');
 module.exports = (env) => {
   const taskHandlers = {
     handleSubmit: (task) => {
+      // Fix null tag_id
+      if (task.tag_id === '') {
+        task.tag_id = null;
+      }
+
       // Optimistically set state
       env.setState(state => {
         return {
@@ -28,6 +33,24 @@ module.exports = (env) => {
         );
     },
 
+    handleCreate: (task) => {
+      // Fix null tag_id
+      if (task.tag_id === '') {
+        task.tag_id = null;
+      }
+
+      // Persist to backend
+      api.createTask(task)
+        .then(
+          _ => {
+            env.fetchAll();
+          },
+          err => {
+            console.error(err);
+          }
+        );
+    },
+
     handleToggle: (id, e) => {
       const value = e.target.checked;
 
@@ -35,6 +58,13 @@ module.exports = (env) => {
       task.done = value;
 
       taskHandlers.handleSubmit(task);
+    },
+
+    handleEdit: (id) => {
+      env.setState({
+        taskModalID: id,
+        taskModalOpen: true
+      });
     }
   }
 

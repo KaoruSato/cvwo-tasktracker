@@ -4,6 +4,17 @@ const api = {
   getTasks: () => {
     return fetch(`${root}/tasks`);
   },
+  createTask: (task) => {
+    return fetch(`${root}/tasks`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        task: task
+      })
+    });
+  },
   editTask: (task) => {
     return fetch(`${root}/tasks/${task.id}`, {
       method: 'PUT',

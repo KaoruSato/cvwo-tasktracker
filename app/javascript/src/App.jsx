@@ -22,8 +22,6 @@ class App extends React.Component {
     }
 
     this.fetchAll = this.fetchAll.bind(this);
-    this.fetchTasks = this.fetchTasks.bind(this);
-    this.fetchTags = this.fetchTags.bind(this);
     this.resetModals = this.resetModals.bind(this);
   }
 
@@ -32,36 +30,14 @@ class App extends React.Component {
   }
 
   fetchAll() {
-    Promise.all([this.fetchTasks(), this.fetchTags()])
-      .then(r => {
-        this.setState({
-          isLoading: false
-        });
-      });
-  }
-
-  fetchTasks() {
-    return api.getTasks()
+    api.getAll()
       .then(res => res.json())
       .then(
         res => {
           this.setState({
-            tasks: res
-          });
-        },
-        err => {
-          console.error(err);
-        }
-      )
-  }
-
-  fetchTags() {
-    return api.getTags()
-      .then(res => res.json())
-      .then(
-        res => {
-          this.setState({
-            tags: res
+            tasks: res.tasks,
+            tags: res.tags,
+            isLoading: false
           });
         },
         err => {

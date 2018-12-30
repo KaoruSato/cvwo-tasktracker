@@ -1,8 +1,8 @@
 const root = "/api";
 
 const api = {
-  getTasks: () => {
-    return fetch(`${root}/tasks`);
+  getAll: () => {
+    return fetch(`${root}/all`);
   },
 
   createTask: (task) => {
@@ -33,10 +33,6 @@ const api = {
     return fetch(`${root}/tasks/${id}`, {
       method: 'DELETE'
     });
-  },
-
-  getTags: () => {
-    return fetch(`${root}/tags`);
   },
 
   deleteTag: (id) => {

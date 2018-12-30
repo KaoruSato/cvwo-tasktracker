@@ -78,7 +78,7 @@ module.exports = (env) => {
       });
 
       // Persist to backend
-      api.editTask(task)
+      api.updateTask(task)
         .then(
           _ => {
             env.fetchAll();

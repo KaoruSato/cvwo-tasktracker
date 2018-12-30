@@ -17,7 +17,7 @@ const api = {
     });
   },
 
-  editTask: (task) => {
+  updateTask: (task) => {
     return fetch(`${root}/tasks/${task.id}`, {
       method: 'PUT',
       headers: {
@@ -28,15 +28,18 @@ const api = {
       })
     });
   },
+
   deleteTask: (id) => {
     return fetch(`${root}/tasks/${id}`, {
       method: 'DELETE'
     });
   },
+
   getTags: () => {
     return fetch(`${root}/tags`);
   },
-  deleteTag: id => {
+
+  deleteTag: (id) => {
     return fetch(`${root}/tags/${id}`, {
       method: 'DELETE'
     });

@@ -35,8 +35,8 @@ class App extends React.Component {
       .then(
         res => {
           this.setState({
-            tasks: res.tasks.sort((a, b) => a.id < b.id ? -1 : 1),
-            tags: res.tags.sort((a, b) => a.id < b.id ? -1 : 1),
+            tasks: res.tasks.sort((a, b) => b.id < a.id ? -1 : 1),
+            tags: res.tags.sort((a, b) => b.id < a.id ? -1 : 1),
             isLoading: false
           });
         },

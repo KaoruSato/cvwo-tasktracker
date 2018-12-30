@@ -9,8 +9,8 @@ class TaskList extends React.Component {
         <Task
           key={task.id}
           task={task}
-          handleToggle={(e) => this.props.taskHandlers.handleToggle(task.id, e)}
-          handleEdit={() => this.props.taskHandlers.handleEdit(task.id)}
+          handleDoneToggle={(e) => this.props.taskHandlers.handleDoneToggle(task.id, e)}
+          handleEditButton={() => this.props.taskHandlers.handleEditButton(task.id)}
         />
       );
     });

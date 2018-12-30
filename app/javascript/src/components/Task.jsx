@@ -5,13 +5,13 @@ class Task extends React.Component {
     const task = this.props.task;
 
     return (
-      <div className="media">
+      <div className="media task">
         <div className="media-left">
           <input
             name="done"
             type="checkbox"
             checked={task.done}
-            onChange={this.props.handleToggle}
+            onChange={this.props.handleDoneToggle}
           />
         </div>
 
@@ -21,11 +21,11 @@ class Task extends React.Component {
 
         <div className="media-right buttons">
           <a
-            className="button is-small is-link is-outlined"
-            onClick={this.props.handleEdit}
+            className="button is-small is-outlined is-link"
+            onClick={this.props.handleEditButton}
           >Edit</a>
 
-          <a className="button is-small is-danger is-outlined">Delete</a>
+          <a className="button is-small is-outlined is-danger">Delete</a>
         </div>
       </div>
     );

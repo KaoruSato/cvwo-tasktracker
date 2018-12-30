@@ -51,7 +51,7 @@ module.exports = (env) => {
         );
     },
 
-    handleToggle: (id, e) => {
+    handleDoneToggle: (id, e) => {
       const value = e.target.checked;
 
       const task = env.state.tasks.filter(t => t.id === id)[0];
@@ -60,7 +60,7 @@ module.exports = (env) => {
       taskHandlers.handleSubmit(task);
     },
 
-    handleEdit: (id) => {
+    handleEditButton: (id) => {
       env.setState({
         taskModalID: id,
         taskModalOpen: true

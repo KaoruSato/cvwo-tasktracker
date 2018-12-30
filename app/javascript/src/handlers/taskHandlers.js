@@ -1,29 +1,19 @@
 const api = require('../utilities/api');
 
-const taskHandlers = (env) => {
-  return {
-    handleChange: (id, e) => {
-      // Extract changed data
-      const target = e.target;
-      const value = target.type === "checkbox" ? target.checked : target.value;
-      const name = target.name;
+module.exports = (env) => {
+  const taskHandlers = {
+    handleSubmit: (task) => {
+      // Optimistically set state
+      env.setState(state => {
+        return {
+          tasks: state.tasks.map(t => {
+            if (t.id === task.id) {
+              return task;
+            }
 
-      // Edit task
-      const task = env.state.tasks.filter(t => t.id === id)[0];
-      task[name] = value;
-
-      // Optimistically set new state
-      const newTasks = env.state.tasks.map(t => {
-        if (t.id === id) {
-          t = task;
+            return t;
+          })
         }
-
-        return t;
-      });
-
-      // Optimistically set new state
-      env.setState({
-        tasks: newTasks
       });
 
       // Persist to backend
@@ -36,8 +26,17 @@ const taskHandlers = (env) => {
             console.error(err);
           }
         );
+    },
+
+    handleToggle: (id, e) => {
+      const value = e.target.checked;
+
+      const task = env.state.tasks.filter(t => t.id === id)[0];
+      task.done = value;
+
+      taskHandlers.handleSubmit(task);
     }
   }
-}
 
-module.exports = taskHandlers;
+  return taskHandlers;
+}

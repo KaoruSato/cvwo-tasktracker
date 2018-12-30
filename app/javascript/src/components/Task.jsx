@@ -11,7 +11,7 @@ class Task extends React.Component {
             name="done"
             type="checkbox"
             checked={task.done}
-            onChange={this.props.handleChange}
+            onChange={this.props.handleToggle}
           />
         </div>
 

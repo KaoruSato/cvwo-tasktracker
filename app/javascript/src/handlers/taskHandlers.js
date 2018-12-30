@@ -58,6 +58,12 @@ module.exports = (env) => {
       });
     },
 
+    handleNewButton: () => {
+      env.setState({
+        taskModalOpen: true
+      });
+    },
+
     handleUpdate: (task) => {
       // Fix empty tag
       if (task.tag_id === '') {

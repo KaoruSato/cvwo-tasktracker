@@ -1,6 +1,7 @@
 const React = require('react');
 
 const Task = require('./Task');
+const TaskListBar = require('./TaskListBar');
 
 class TaskList extends React.Component {
   render() {
@@ -18,6 +19,10 @@ class TaskList extends React.Component {
 
     return (
       <main className="column tasklist">
+        <TaskListBar
+          handleNewButton={this.props.taskHandlers.handleNewButton}
+        />
+
         {tasks}
       </main>
     );

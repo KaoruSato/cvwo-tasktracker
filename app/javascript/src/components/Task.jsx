@@ -1,8 +1,15 @@
 const React = require('react');
 
+const Tag = require('./Tag');
+
 class Task extends React.Component {
   render() {
     const task = this.props.task;
+
+    let tagEl;
+    if (this.props.tag) {
+      tagEl = <Tag tag={this.props.tag} />;
+    }
 
     return (
       <div className="media task">
@@ -17,6 +24,8 @@ class Task extends React.Component {
 
         <div className="media-content">
           <span>{task.title}</span>
+
+          {tagEl}
         </div>
 
         <div className="media-right buttons">

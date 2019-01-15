@@ -9,7 +9,7 @@ class TagList extends React.Component {
         <Tag
           key={tag.id}
           tag={tag}
-          hasDeleteButton={true}
+          expanded={true}
           handleDeleteButton={() => this.props.tagHandlers.handleDeleteButton(tag.id)}
         />
       );

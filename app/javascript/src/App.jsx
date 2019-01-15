@@ -85,6 +85,7 @@ class App extends React.Component {
 
         <TaskList
           tasks={this.state.tasks}
+          tags={this.state.tags}
           tasksFilterTerm={this.state.tasksFilterTerm}
           taskHandlers={taskHandlers(this)}
         />

@@ -30,3 +30,7 @@ $common-spacing: 1em;
   border-radius: 4px;
   outline: none;
 }
+
+.task .tag {
+  margin-left: $half-spacing;
+}

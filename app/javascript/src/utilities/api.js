@@ -17,6 +17,18 @@ const api = {
     });
   },
 
+  createTag: (tag) => {
+    return fetch(`${root}/tags`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        tag: tag
+      })
+    });
+  },
+
   updateTask: (task) => {
     return fetch(`${root}/tasks/${task.id}`, {
       method: 'PUT',

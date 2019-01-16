@@ -6,7 +6,9 @@ const taskHandlers = require('./handlers/taskHandlers');
 
 const Sidebar = require('./components/Sidebar');
 const TaskList = require('./components/TaskList');
+
 const TaskModal = require('./components/TaskModal');
+const TagModal = require('./components/TagModal');
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +22,9 @@ class App extends React.Component {
       isLoading: true,
 
       taskModalID: null,
-      taskModalOpen: false
+      taskModalOpen: false,
+
+      tagModalOpen: false
     }
 
     this.fetchAll = this.fetchAll.bind(this);
@@ -51,7 +55,9 @@ class App extends React.Component {
   resetModals() {
     this.setState({
       taskModalID: null,
-      taskModalOpen: false
+      taskModalOpen: false,
+
+      tagModalOpen: false
     });
   }
 
@@ -75,6 +81,18 @@ class App extends React.Component {
       );
     }
 
+    let tagModal;
+    if (this.state.tagModalOpen) {
+      tagModal = (
+        <TagModal
+          tagModalOpen={this.state.tagModalOpen}
+          resetModals={this.resetModals}
+
+          tagHandlers={tagHandlers(this)}
+        />
+      );
+    }
+
     return (
       <div className="columns">
         <Sidebar
@@ -91,6 +109,7 @@ class App extends React.Component {
         />
 
         {taskModal}
+        {tagModal}
       </div>
     );
   }

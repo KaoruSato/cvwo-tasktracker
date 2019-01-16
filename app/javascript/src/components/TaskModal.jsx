@@ -73,7 +73,7 @@ class TaskModal extends React.Component {
     return (
       <Modal
         isOpen={this.props.isOpen}
-        className="taskmodal"
+        className="common-modal taskmodal"
       >
 
         <form onSubmit={this.handleSubmit}>

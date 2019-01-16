@@ -16,8 +16,17 @@ class TagList extends React.Component {
     });
 
     return (
-      <div className="field is-grouped is-grouped-multiline taglist" >
-        {tags}
+      <div className="taglist">
+        <div className="buttons">
+          <a
+            className="button is-small is-outlined is-link is-fullwidth"
+            onClick={this.props.tagHandlers.handleNewButton}
+          >Add new tag</a>
+        </div>
+
+        <div className="field is-grouped is-grouped-multiline">
+          {tags}
+        </div>
       </div>
     );
   }

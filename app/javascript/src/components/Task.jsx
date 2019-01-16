@@ -8,7 +8,7 @@ class Task extends React.Component {
 
     let tagEl;
     if (this.props.tag) {
-      tagEl = <Tag tag={this.props.tag} />;
+      tagEl = <Tag tag={this.props.tag} filtered={this.props.filterTag === this.props.tag.id} />;
     }
 
     return (

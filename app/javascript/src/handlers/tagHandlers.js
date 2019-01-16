@@ -37,6 +37,20 @@ module.exports = (env) => {
       }
     },
 
+    handleFilter: (tag) => {
+      env.setState(state => {
+        if (state.filterTag === tag.id) {
+          return {
+            filterTag: null
+          };
+        } else {
+          return {
+            filterTag: tag.id
+          };
+        }
+      });
+    },
+
     handleNewButton: () => {
       env.setState({
         tagModalOpen: true

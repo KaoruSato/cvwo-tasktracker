@@ -19,6 +19,7 @@ class App extends React.Component {
       tags: [],
 
       filterTerm: '',
+      filterTag: null,
 
       isLoading: true,
 
@@ -100,12 +101,14 @@ class App extends React.Component {
           tasks={this.state.tasks}
           tags={this.state.tags}
           tagHandlers={tagHandlers(this)}
+          filterTag={this.state.filterTag}
         />
 
         <TaskList
           tasks={this.state.tasks}
           tags={this.state.tags}
           filterTerm={this.state.filterTerm}
+          filterTag={this.state.filterTag}
           taskHandlers={taskHandlers(this)}
         />
 

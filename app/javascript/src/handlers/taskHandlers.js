@@ -58,17 +58,17 @@ module.exports = (env) => {
       });
     },
 
-    handleNewButton: () => {
-      env.setState({
-        taskModalOpen: true
-      });
-    },
-
-    handleSearchChange: (e) => {
+    handleFilterChange: (e) => {
       const value = e.target.value;
 
       env.setState({
-        tasksFilterTerm: value
+        filterTerm: value
+      });
+    },
+
+    handleNewButton: () => {
+      env.setState({
+        taskModalOpen: true
       });
     },
 

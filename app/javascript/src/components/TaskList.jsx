@@ -5,7 +5,9 @@ const TaskListBar = require('./TaskListBar');
 
 class TaskList extends React.Component {
   render() {
-    const tasksEl = this.props.tasks.filter(t => t.title.includes(this.props.tasksFilterTerm)).map(task => {
+    const filteredTasks = this.props.tasks.filter(t => t.title.toUpperCase().includes(this.props.filterTerm.toUpperCase()));
+
+    const tasksEl = filteredTasks.map(task => {
       const tag = this.props.tags.filter(tag => tag.id === task.tag_id)[0];
 
       return (
@@ -23,7 +25,7 @@ class TaskList extends React.Component {
     return (
       <main className="column tasklist">
         <TaskListBar
-          tasksFilterTerm={this.props.tasksFilterTerm}
+          filterTerm={this.props.filterTerm}
           taskHandlers={this.props.taskHandlers}
         />
 

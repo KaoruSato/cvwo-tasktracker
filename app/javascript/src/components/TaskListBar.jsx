@@ -1,15 +1,15 @@
 const React = require('react');
 
-const Search = require('./Search');
+const Filter = require('./Filter');
 
 class TaskListBar extends React.Component {
   render() {
     return (
       <div className="media tasklistbar">
         <div className="media-content">
-          <Search
-            tasksFilterTerm={this.props.tasksFilterTerm}
-            handleSearchChange={this.props.taskHandlers.handleSearchChange}
+          <Filter
+            filterTerm={this.props.filterTerm}
+            handleFilterChange={this.props.taskHandlers.handleFilterChange}
           />
         </div>
 

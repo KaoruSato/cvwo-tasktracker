@@ -37,12 +37,20 @@ class Task extends React.Component {
           <a
             className="button is-small is-outlined is-link"
             onClick={this.props.handleEditButton}
-          >Edit</a>
+          >
+            <span className="icon">
+              <i className="fas fa-pencil-alt"></i>
+            </span>
+          </a>
 
           <a
             className="button is-small is-outlined is-danger"
             onClick={this.props.handleDeleteButton}
-          >Delete</a>
+          >
+            <span className="icon">
+              <i className="fas fa-trash"></i>
+            </span>
+          </a>
         </div>
       </div>
     );

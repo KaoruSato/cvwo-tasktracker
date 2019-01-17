@@ -60,7 +60,7 @@ class TaskForm extends React.Component {
 
     return (
       <form
-        className="columns taskform"
+        className="columns is-mobile taskform"
         onSubmit={this.handleSubmit}
       >
         <div className="column is-7">
@@ -88,11 +88,15 @@ class TaskForm extends React.Component {
         </div>
 
         <div className="column is-2">
-          <input
+          <button
             type="submit"
-            className="button is-small is-outlined is-link is-fullwidth"
+            className="button is-small is-outlined is-primary is-fullwidth"
             value="Save"
-          />
+          >
+            <span className="icon">
+              <i className="fas fa-check"></i>
+            </span>
+          </button>
         </div>
       </form>
     );

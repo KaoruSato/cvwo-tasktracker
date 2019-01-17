@@ -1,6 +1,7 @@
 const React = require('react');
 
 const Overview = require('./Overview');
+const Filter = require('./Filter');
 const TagList = require('./TagList');
 
 class Sidebar extends React.Component {
@@ -13,11 +14,20 @@ class Sidebar extends React.Component {
 
         <hr />
 
+        <Filter
+          filterTerm={this.props.filterTerm}
+          handleFilterChange={this.props.taskHandlers.handleFilterChange}
+        />
+
+        <hr />
+
         <TagList
           tags={this.props.tags}
-          tagHandlers={this.props.tagHandlers}
           filterTag={this.props.filterTag}
+          tagHandlers={this.props.tagHandlers}
         />
+
+        <hr />
       </aside>
     );
   }

@@ -101,8 +101,10 @@ class App extends React.Component {
         <Sidebar
           tasks={this.state.tasks}
           tags={this.state.tags}
-          tagHandlers={tagHandlers(this)}
+          filterTerm={this.state.filterTerm}
           filterTag={this.state.filterTag}
+          taskHandlers={taskHandlers(this)}
+          tagHandlers={tagHandlers(this)}
         />
 
         <TaskList

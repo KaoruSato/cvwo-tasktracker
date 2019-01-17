@@ -7,7 +7,6 @@
 }
 
 // Variables
-$half-spacing: 0.5em;
 $common-spacing: 1em;
 
 // Components
@@ -22,7 +21,7 @@ $common-spacing: 1em;
 .common-modal {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   margin: $common-spacing auto;
   padding: $common-spacing;
 
@@ -32,5 +31,5 @@ $common-spacing: 1em;
 }
 
 .task .tag {
-  margin-left: $half-spacing;
+  margin-left: $common-spacing;
 }

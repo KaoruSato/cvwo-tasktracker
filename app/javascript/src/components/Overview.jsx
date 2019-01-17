@@ -5,9 +5,11 @@ class Overview extends React.Component {
     const outstanding = this.props.tasks.filter(t => !t.done).length;
 
     // Set document title
+    let title = "Task Tracker"
     if (outstanding > 0) {
-      document.title = `(${outstanding}) Task Tracker`;
+      title = `(${outstanding}) ${title}`;
     }
+    document.title = title;
 
     return (
       <div className="has-text-centered overview">

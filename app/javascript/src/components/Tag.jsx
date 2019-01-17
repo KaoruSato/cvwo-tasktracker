@@ -2,7 +2,7 @@ const React = require('react');
 
 class Tag extends React.Component {
   render() {
-    const tagColor = this.props.filtered ? 'is-success' : 'is-light';
+    const tagColor = this.props.filtered ? 'is-primary' : 'is-light';
 
     if (this.props.expanded) {
       return (

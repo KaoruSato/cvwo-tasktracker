@@ -7,26 +7,15 @@ class TaskModal extends React.Component {
   constructor(props) {
     super(props);
 
-    if (this.props.taskModalID) {
-      const task = this.props.tasks.filter(t => t.id === this.props.taskModalID)[0];
+    const task = this.props.tasks.filter(t => t.id === this.props.taskModalID)[0];
 
-      // Fix empty tag
-      if (!task.tag_id) {
-        task.tag_id = '';
-      }
+    // Fix empty tag
+    if (!task.tag_id) {
+      task.tag_id = '';
+    }
 
-      this.state = {
-        task: task
-      }
-    } else {
-      this.state = {
-        task: {
-          id: null,
-          title: '',
-          done: false,
-          tag_id: ''
-        }
-      }
+    this.state = {
+      task: task
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -56,11 +45,7 @@ class TaskModal extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    if (this.state.task.id) {
-      this.props.taskHandlers.handleUpdate(this.state.task);
-    } else {
-      this.props.taskHandlers.handleCreate(this.state.task);
-    }
+    this.props.taskHandlers.handleUpdate(this.state.task);
 
     this.props.resetModals();
   }
@@ -98,7 +83,7 @@ class TaskModal extends React.Component {
                   value={this.state.task.tag_id}
                   onChange={this.handleChange}
                 >
-                  <option value=''>No tag</option>
+                  <option value=''>Untagged</option>
                   {options}
                 </select>
               </div>

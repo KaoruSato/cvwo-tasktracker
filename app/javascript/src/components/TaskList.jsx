@@ -1,7 +1,7 @@
 const React = require('react');
 
 const Task = require('./Task');
-const TaskListBar = require('./TaskListBar');
+const TaskForm = require('./TaskForm');
 
 class TaskList extends React.Component {
   render() {
@@ -33,8 +33,8 @@ class TaskList extends React.Component {
 
     return (
       <main className="column tasklist">
-        <TaskListBar
-          filterTerm={this.props.filterTerm}
+        <TaskForm
+          tags={this.props.tags}
           taskHandlers={this.props.taskHandlers}
         />
 

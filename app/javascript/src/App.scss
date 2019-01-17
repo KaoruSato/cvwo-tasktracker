@@ -22,6 +22,12 @@ $common-spacing: 1em;
   }
 }
 
+.tasklist {
+  .taskform {
+    border-bottom: 1px solid rgba(219, 219, 219, .5);
+  }
+}
+
 .common-modal {
   position: relative;
   width: 100%;

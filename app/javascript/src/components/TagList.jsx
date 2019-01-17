@@ -5,7 +5,7 @@ const TagForm = require('./TagForm');
 
 class TagList extends React.Component {
   render() {
-    const tagElements = this.props.tags.map(tag => {
+    let tagElements = this.props.tags.map(tag => {
       return (
         <Tag
           key={tag.id}
@@ -17,6 +17,10 @@ class TagList extends React.Component {
         />
       );
     });
+
+    if (tagElements.length === 0) {
+      tagElements = <p className="banner">No tags found.</p>
+    }
 
     return (
       <div className="taglist">

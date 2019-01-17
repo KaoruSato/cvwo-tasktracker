@@ -9,6 +9,10 @@ $common-spacing: 1em;
   padding: 20px;
 }
 
+.tag {
+  user-select: none;
+}
+
 // Components
 .sidebar {
   .overview {
@@ -16,15 +20,15 @@ $common-spacing: 1em;
       display: block;
     }
   }
-
-  .tagform {
-    margin-bottom: $common-spacing;
-  }
 }
 
 .tasklist {
   .taskform {
     border-bottom: 1px solid rgba(219, 219, 219, .5);
+  }
+
+  .tag {
+    margin-left: $common-spacing / 2;
   }
 }
 
@@ -40,6 +44,9 @@ $common-spacing: 1em;
   outline: none;
 }
 
-.task .tag {
-  margin-left: $common-spacing;
+.banner {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: $common-spacing * 2 0;
 }

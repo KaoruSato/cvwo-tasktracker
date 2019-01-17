@@ -15,7 +15,7 @@ class TaskList extends React.Component {
       filteredTasks = filteredTasks.filter(t => t.tag_id === this.props.filterTag);
     }
 
-    const taskElements = filteredTasks.map(task => {
+    let taskElements = filteredTasks.map(task => {
       const tag = this.props.tags.filter(t => t.id === task.tag_id)[0];
 
       return (
@@ -30,6 +30,10 @@ class TaskList extends React.Component {
         />
       );
     });
+
+    if (taskElements.length === 0) {
+      taskElements = <p className="banner">No tasks found.</p>;
+    }
 
     return (
       <main className="column tasklist">

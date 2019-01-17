@@ -30,6 +30,10 @@ $common-spacing: 1em;
   .tag {
     margin-left: $common-spacing / 2;
   }
+
+  .task-done {
+    color: #b5b5b5;
+  }
 }
 
 .common-modal {

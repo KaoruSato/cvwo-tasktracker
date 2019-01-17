@@ -17,6 +17,11 @@ class Task extends React.Component {
       );
     }
 
+    let titleColor;
+    if (task.done) {
+      titleColor = 'task-done';
+    }
+
     return (
       <div className="media task">
         <div className="media-left">
@@ -29,7 +34,7 @@ class Task extends React.Component {
         </div>
 
         <div className="media-content">
-          <span>{task.title}</span>
+          <span className={titleColor}>{task.title}</span>
 
           {tagElement}
         </div>

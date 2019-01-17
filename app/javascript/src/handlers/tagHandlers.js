@@ -19,9 +19,16 @@ module.exports = (env) => {
       if (confirm('Are you sure you want to delete this tag?\nThis tag will be removed from all tasks but tasks will remain unaffected.')) {
         // Optimistic state update
         env.setState(state => {
-          return {
+          let newState = {
             tags: state.tags.filter(tag => tag.id !== id)
           }
+
+          // If deleted tag was an active filter, reset the filter
+          if (state.filterTag === id) {
+            newState.filterTag = null;
+          }
+
+          return newState;
         });
 
         // Persist to backend

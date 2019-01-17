@@ -1,6 +1,7 @@
 const React = require('react');
 
 const Tag = require('./Tag');
+const TagForm = require('./TagForm');
 
 class TagList extends React.Component {
   render() {
@@ -19,12 +20,9 @@ class TagList extends React.Component {
 
     return (
       <div className="taglist">
-        <div className="buttons">
-          <a
-            className="button is-small is-outlined is-link is-fullwidth"
-            onClick={this.props.tagHandlers.handleNewButton}
-          >Add new tag</a>
-        </div>
+        <TagForm
+          tagHandlers={this.props.tagHandlers}
+        />
 
         <div className="field is-grouped is-grouped-multiline">
           {tagElements}

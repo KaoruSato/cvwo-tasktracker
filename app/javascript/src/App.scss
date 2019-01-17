@@ -1,3 +1,6 @@
+// Variables
+$common-spacing: 1em;
+
 // Global
 #root {
   width: 100%;
@@ -6,15 +9,16 @@
   padding: 20px;
 }
 
-// Variables
-$common-spacing: 1em;
-
 // Components
 .sidebar {
   .overview {
     h1 span {
       display: block;
     }
+  }
+
+  .tagform {
+    margin-bottom: $common-spacing;
   }
 }
 

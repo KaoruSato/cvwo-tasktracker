@@ -15,7 +15,7 @@ class Tag extends React.Component {
       );
     } else {
       return (
-        <span className={"tag " + tagColor}>{this.props.tag.title}</span>
+        <a className={"tag " + tagColor} onClick={this.props.handleFilterButton}>{this.props.tag.title}</a>
       );
     }
   }

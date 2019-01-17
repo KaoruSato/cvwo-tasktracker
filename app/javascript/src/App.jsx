@@ -99,6 +99,7 @@ class App extends React.Component {
           filterTerm={this.state.filterTerm}
           filterTag={this.state.filterTag}
           taskHandlers={taskHandlers(this)}
+          tagHandlers={tagHandlers(this)}
         />
 
         {taskModal}

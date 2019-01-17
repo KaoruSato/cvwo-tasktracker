@@ -12,6 +12,7 @@ class Task extends React.Component {
         <Tag
           tag={this.props.tag}
           filtered={this.props.filterTag === this.props.tag.id}
+          handleFilterButton={() => this.props.tagHandlers.handleFilterButton(this.props.tag)}
         />
       );
     }

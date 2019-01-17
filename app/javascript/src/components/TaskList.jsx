@@ -24,6 +24,7 @@ class TaskList extends React.Component {
           task={task}
           tag={tag}
           filterTag={this.props.filterTag}
+          tagHandlers={this.props.tagHandlers}
           handleDoneToggle={(e) => this.props.taskHandlers.handleDoneToggle(task, e)}
           handleEditButton={() => this.props.taskHandlers.handleEditButton(task)}
           handleDeleteButton={() => this.props.taskHandlers.handleDeleteButton(task)}

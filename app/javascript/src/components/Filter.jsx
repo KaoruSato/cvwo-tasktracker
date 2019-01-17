@@ -6,9 +6,9 @@ class Filter extends React.Component {
       <input
         name="search"
         type="text"
-        className="input is-small"
-        placeholder="Filter tasks"
         value={this.props.filterTerm}
+        placeholder="Filter tasks"
+        className="input is-small"
         onChange={this.props.handleFilterChange}
       />
     );

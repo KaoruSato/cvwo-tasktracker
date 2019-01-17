@@ -4,15 +4,15 @@ const Tag = require('./Tag');
 
 class TagList extends React.Component {
   render() {
-    const tags = this.props.tags.map(tag => {
+    const tagElements = this.props.tags.map(tag => {
       return (
         <Tag
           key={tag.id}
           tag={tag}
           expanded={true}
           filtered={this.props.filterTag === tag.id}
-          handleDeleteButton={() => this.props.tagHandlers.handleDeleteButton(tag.id)}
-          handleFilter={() => this.props.tagHandlers.handleFilter(tag)}
+          handleDeleteButton={() => this.props.tagHandlers.handleDeleteButton(tag)}
+          handleFilterButton={() => this.props.tagHandlers.handleFilterButton(tag)}
         />
       );
     });
@@ -27,7 +27,7 @@ class TagList extends React.Component {
         </div>
 
         <div className="field is-grouped is-grouped-multiline">
-          {tags}
+          {tagElements}
         </div>
       </div>
     );

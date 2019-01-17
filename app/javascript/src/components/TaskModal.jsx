@@ -7,8 +7,8 @@ class TaskModal extends React.Component {
   constructor(props) {
     super(props);
 
-    if (this.props.taskID) {
-      const task = this.props.tasks.filter(t => t.id === this.props.taskID)[0];
+    if (this.props.taskModalID) {
+      const task = this.props.tasks.filter(t => t.id === this.props.taskModalID)[0];
 
       // Fix empty tag
       if (!task.tag_id) {
@@ -43,13 +43,13 @@ class TaskModal extends React.Component {
       value = e.target.value === '' ? '' : parseInt(e.target.value);
     }
 
-    this.setState(state => {
-      const newTask = state.task;
-      newTask[name] = value;
-
-      return {
-        task: newTask
+    this.setState(oldState => {
+      const newState = {
+        task: oldState.task
       }
+      newState.task[name] = value;
+
+      return newState;
     });
   }
 
@@ -66,13 +66,13 @@ class TaskModal extends React.Component {
   }
 
   render() {
-    const tagOptions = this.props.tags.map(t => {
+    const options = this.props.tags.map(t => {
       return <option key={t.id} value={t.id}>{t.title}</option>;
     });
 
     return (
       <Modal
-        isOpen={this.props.isOpen}
+        isOpen={this.props.taskModalOpen}
         className="common-modal taskmodal"
       >
 
@@ -82,8 +82,9 @@ class TaskModal extends React.Component {
               <input
                 name="title"
                 type="text"
-                className="input"
                 value={this.state.task.title}
+                placeholder="Title"
+                className="input is-small"
                 onChange={this.handleChange}
               />
             </div>
@@ -91,14 +92,14 @@ class TaskModal extends React.Component {
 
           <div className="field">
             <div className="control">
-              <div className="select is-fullwidth ">
+              <div className="select is-small is-fullwidth">
                 <select
                   name="tag_id"
                   value={this.state.task.tag_id}
                   onChange={this.handleChange}
                 >
                   <option value=''>No tag</option>
-                  {tagOptions}
+                  {options}
                 </select>
               </div>
             </div>
@@ -106,10 +107,11 @@ class TaskModal extends React.Component {
 
           <div className="field is-grouped is-grouped-centered">
             <p className="control">
-              <a
+              <button
+                type="button"
                 className="button is-small is-outlined"
                 onClick={this.props.resetModals}
-              >Cancel</a>
+              >Cancel</button>
             </p>
 
             <p className="control">

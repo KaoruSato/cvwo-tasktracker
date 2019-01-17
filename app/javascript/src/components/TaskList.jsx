@@ -15,8 +15,8 @@ class TaskList extends React.Component {
       filteredTasks = filteredTasks.filter(t => t.tag_id === this.props.filterTag);
     }
 
-    const tasksEl = filteredTasks.map(task => {
-      const tag = this.props.tags.filter(tag => tag.id === task.tag_id)[0];
+    const taskElements = filteredTasks.map(task => {
+      const tag = this.props.tags.filter(t => t.id === task.tag_id)[0];
 
       return (
         <Task
@@ -24,9 +24,9 @@ class TaskList extends React.Component {
           task={task}
           tag={tag}
           filterTag={this.props.filterTag}
-          handleDoneToggle={(e) => this.props.taskHandlers.handleDoneToggle(task.id, e)}
-          handleEditButton={() => this.props.taskHandlers.handleEditButton(task.id)}
-          handleDeleteButton={() => this.props.taskHandlers.handleDeleteButton(task.id)}
+          handleDoneToggle={(e) => this.props.taskHandlers.handleDoneToggle(task, e)}
+          handleEditButton={() => this.props.taskHandlers.handleEditButton(task)}
+          handleDeleteButton={() => this.props.taskHandlers.handleDeleteButton(task)}
         />
       );
     });
@@ -38,7 +38,7 @@ class TaskList extends React.Component {
           taskHandlers={this.props.taskHandlers}
         />
 
-        {tasksEl}
+        {taskElements}
       </main>
     );
   }

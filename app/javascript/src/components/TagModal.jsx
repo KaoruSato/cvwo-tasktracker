@@ -46,8 +46,8 @@ class TagModal extends React.Component {
               <input
                 name="title"
                 type="text"
-                className="input is-small"
                 placeholder="Title"
+                className="input is-small"
                 value={this.state.tag.title}
                 onChange={this.handleChange}
               />
@@ -56,10 +56,11 @@ class TagModal extends React.Component {
 
           <div className="field is-grouped is-grouped-centered">
             <p className="control">
-              <a
+              <button
+                type="button"
                 className="button is-small is-outlined"
                 onClick={this.props.resetModals}
-              >Cancel</a>
+              >Cancel</button>
             </p>
 
             <p className="control">

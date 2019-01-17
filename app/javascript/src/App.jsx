@@ -15,17 +15,16 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      isLoading: true,
+
       tasks: [],
       tags: [],
 
       filterTerm: '',
       filterTag: null,
 
-      isLoading: true,
-
-      taskModalID: null,
       taskModalOpen: false,
-
+      taskModalID: null,
       tagModalOpen: false
     }
 
@@ -37,6 +36,7 @@ class App extends React.Component {
     this.fetchAll();
   }
 
+  // Fetch all tasks and tags
   fetchAll() {
     api.getAll()
       .then(res => res.json())
@@ -54,6 +54,7 @@ class App extends React.Component {
       );
   }
 
+  // Close and reset all modals
   resetModals() {
     this.setState({
       taskModalID: null,
@@ -65,15 +66,15 @@ class App extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return <div>Loading...</div>;
+      return <div className="has-text-centered">Loading...</div>;
     }
 
     let taskModal;
     if (this.state.taskModalOpen) {
       taskModal = (
         <TaskModal
-          isOpen={this.state.taskModalOpen}
-          taskID={this.state.taskModalID}
+          taskModalOpen={this.state.taskModalOpen}
+          taskModalID={this.state.taskModalID}
           resetModals={this.resetModals}
 
           tasks={this.state.tasks}

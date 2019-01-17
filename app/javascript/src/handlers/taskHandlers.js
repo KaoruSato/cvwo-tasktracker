@@ -20,17 +20,19 @@ module.exports = (env) => {
         );
     },
 
-    handleDeleteButton: (id) => {
+    handleDeleteButton: (task) => {
       if (confirm('Are you sure you want to delete this task?')) {
         // Optimistic state update
-        env.setState(state => {
-          return {
-            tasks: state.tasks.filter(t => t.id !== id)
+        env.setState(oldState => {
+          const newState = {
+            tasks: oldState.tasks.filter(t => t.id !== task.id)
           }
+
+          return newState;
         });
 
         // Persist to backend
-        api.deleteTask(id)
+        api.deleteTask(task)
           .then(
             _ => {
               env.fetchAll();
@@ -42,18 +44,17 @@ module.exports = (env) => {
       }
     },
 
-    handleDoneToggle: (id, e) => {
+    handleDoneToggle: (task, e) => {
       const value = e.target.checked;
 
-      const task = env.state.tasks.filter(t => t.id === id)[0];
       task.done = value;
 
       taskHandlers.handleUpdate(task);
     },
 
-    handleEditButton: (id) => {
+    handleEditButton: (task) => {
       env.setState({
-        taskModalID: id,
+        taskModalID: task.id,
         taskModalOpen: true
       });
     },
@@ -79,16 +80,18 @@ module.exports = (env) => {
       }
 
       // Optimistically set state
-      env.setState(state => {
-        return {
-          tasks: state.tasks.map(t => {
+      env.setState(oldState => {
+        const newState = {
+          tasks: oldState.tasks.map(t => {
             if (t.id === task.id) {
               return task;
+            } else {
+              return t;
             }
-
-            return t;
           })
         }
+
+        return newState;
       });
 
       // Persist to backend

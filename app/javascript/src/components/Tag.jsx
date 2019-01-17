@@ -8,7 +8,7 @@ class Tag extends React.Component {
       return (
         <div className="control">
           <div className="tags has-addons">
-            <a className={"tag " + tagColor} onClick={this.props.handleFilter}>{this.props.tag.title}</a>
+            <a className={"tag " + tagColor} onClick={this.props.handleFilterButton}>{this.props.tag.title}</a>
             <a className="tag is-delete" onClick={this.props.handleDeleteButton}></a>
           </div>
         </div>

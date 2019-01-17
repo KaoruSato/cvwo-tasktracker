@@ -6,9 +6,14 @@ class Task extends React.Component {
   render() {
     const task = this.props.task;
 
-    let tagEl;
+    let tagElement;
     if (this.props.tag) {
-      tagEl = <Tag tag={this.props.tag} filtered={this.props.filterTag === this.props.tag.id} />;
+      tagElement = (
+        <Tag
+          tag={this.props.tag}
+          filtered={this.props.filterTag === this.props.tag.id}
+        />
+      );
     }
 
     return (
@@ -25,7 +30,7 @@ class Task extends React.Component {
         <div className="media-content">
           <span>{task.title}</span>
 
-          {tagEl}
+          {tagElement}
         </div>
 
         <div className="media-right buttons">

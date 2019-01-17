@@ -15,16 +15,16 @@ module.exports = (env) => {
         );
     },
 
-    handleDeleteButton: (id) => {
+    handleDeleteButton: (tag) => {
       if (confirm('Are you sure you want to delete this tag?\nThis tag will be removed from all tasks but tasks will remain unaffected.')) {
         // Optimistic state update
-        env.setState(state => {
+        env.setState(oldState => {
           let newState = {
-            tags: state.tags.filter(tag => tag.id !== id)
+            tags: oldState.tags.filter(t => t.id !== tag.id)
           }
 
           // If deleted tag was an active filter, reset the filter
-          if (state.filterTag === id) {
+          if (oldState.filterTag === tag.id) {
             newState.filterTag = null;
           }
 
@@ -32,7 +32,7 @@ module.exports = (env) => {
         });
 
         // Persist to backend
-        api.deleteTag(id)
+        api.deleteTag(tag)
           .then(
             _ => {
               env.fetchAll();
@@ -44,9 +44,9 @@ module.exports = (env) => {
       }
     },
 
-    handleFilter: (tag) => {
-      env.setState(state => {
-        if (state.filterTag === tag.id) {
+    handleFilterButton: (tag) => {
+      env.setState(oldState => {
+        if (oldState.filterTag === tag.id) {
           return {
             filterTag: null
           };

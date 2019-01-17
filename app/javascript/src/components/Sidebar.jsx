@@ -6,7 +6,7 @@ const TagList = require('./TagList');
 class Sidebar extends React.Component {
   render() {
     return (
-      <header className="column is-one-quarter sidebar">
+      <aside className="column is-one-quarter sidebar">
         <Overview
           tasks={this.props.tasks}
         />
@@ -18,7 +18,7 @@ class Sidebar extends React.Component {
           tagHandlers={this.props.tagHandlers}
           filterTag={this.props.filterTag}
         />
-      </header>
+      </aside>
     );
   }
 }

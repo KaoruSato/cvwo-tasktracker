@@ -17,18 +17,6 @@ const api = {
     });
   },
 
-  createTag: (tag) => {
-    return fetch(`${root}/tags`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        tag: tag
-      })
-    });
-  },
-
   updateTask: (task) => {
     return fetch(`${root}/tasks/${task.id}`, {
       method: 'PUT',
@@ -41,14 +29,26 @@ const api = {
     });
   },
 
-  deleteTask: (id) => {
-    return fetch(`${root}/tasks/${id}`, {
+  deleteTask: (task) => {
+    return fetch(`${root}/tasks/${task.id}`, {
       method: 'DELETE'
     });
   },
 
-  deleteTag: (id) => {
-    return fetch(`${root}/tags/${id}`, {
+  createTag: (tag) => {
+    return fetch(`${root}/tags`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        tag: tag
+      })
+    });
+  },
+
+  deleteTag: (tag) => {
+    return fetch(`${root}/tags/${tag.id}`, {
       method: 'DELETE'
     });
   }

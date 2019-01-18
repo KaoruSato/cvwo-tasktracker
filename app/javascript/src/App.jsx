@@ -1,4 +1,5 @@
 const React = require('react');
+const _ = require('lodash');
 
 const api = require('./utilities/api');
 const tagHandlers = require('./handlers/tagHandlers');
@@ -40,11 +41,25 @@ class App extends React.Component {
       .then(res => res.json())
       .then(
         res => {
-          this.setState({
+          const newState = {
             tasks: res.tasks.sort((a, b) => b.id < a.id ? -1 : 1),
             tags: res.tags.sort((a, b) => b.id < a.id ? -1 : 1),
             isLoading: false
-          });
+          }
+
+          // Re-render only if received state is different from current state
+          if (
+            !_.isEqual(
+              newState.tasks.map(t => _.pick(t, ['id', 'title', 'done'])),
+              this.state.tasks.map(t => _.pick(t, ['id', 'title', 'done']))
+            ) ||
+            !_.isEqual(
+              newState.tags.map(t => _.pick(t, ['id', 'title'])),
+              this.state.tags.map(t => _.pick(t, ['id', 'title']))
+            )
+          ) {
+            this.setState(newState);
+          }
         },
         err => {
           console.error(err);

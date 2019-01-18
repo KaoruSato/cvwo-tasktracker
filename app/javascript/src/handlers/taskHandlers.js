@@ -52,24 +52,11 @@ module.exports = (env) => {
       taskHandlers.handleUpdate(task);
     },
 
-    handleEditButton: (task) => {
-      env.setState({
-        taskModalID: task.id,
-        taskModalOpen: true
-      });
-    },
-
     handleFilterChange: (e) => {
       const value = e.target.value;
 
       env.setState({
         filterTerm: value
-      });
-    },
-
-    handleNewButton: () => {
-      env.setState({
-        taskModalOpen: true
       });
     },
 

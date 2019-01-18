@@ -23,10 +23,6 @@ $common-spacing: 1em;
 }
 
 .tasklist {
-  .taskform {
-    border-bottom: 1px solid rgba(219, 219, 219, .5);
-  }
-
   .tag {
     margin-left: $common-spacing / 2;
   }
@@ -38,18 +34,6 @@ $common-spacing: 1em;
       color: #b5b5b5;
     }
   }
-}
-
-.common-modal {
-  position: relative;
-  width: 100%;
-  max-width: 300px;
-  margin: $common-spacing auto;
-  padding: $common-spacing;
-
-  background: whitesmoke;
-  border-radius: 4px;
-  outline: none;
 }
 
 .banner {

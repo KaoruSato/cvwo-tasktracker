@@ -21,12 +21,13 @@ class TaskList extends React.Component {
       return (
         <Task
           key={task.id}
+          tags={this.props.tags}
           task={task}
           tag={tag}
           filterTag={this.props.filterTag}
+          taskHandlers={this.props.taskHandlers}
           tagHandlers={this.props.tagHandlers}
           handleDoneToggle={(e) => this.props.taskHandlers.handleDoneToggle(task, e)}
-          handleEditButton={() => this.props.taskHandlers.handleEditButton(task)}
           handleDeleteButton={() => this.props.taskHandlers.handleDeleteButton(task)}
         />
       );

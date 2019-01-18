@@ -8,8 +8,6 @@ const taskHandlers = require('./handlers/taskHandlers');
 const Sidebar = require('./components/Sidebar');
 const TaskList = require('./components/TaskList');
 
-const TaskModal = require('./components/TaskModal');
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,14 +19,10 @@ class App extends React.Component {
       tags: [],
 
       filterTerm: '',
-      filterTag: null,
-
-      taskModalOpen: false,
-      taskModalID: null,
+      filterTag: null
     }
 
     this.fetchAll = this.fetchAll.bind(this);
-    this.resetModals = this.resetModals.bind(this);
   }
 
   componentDidMount() {
@@ -49,6 +43,7 @@ class App extends React.Component {
 
           // Re-render only if received state is different from current state
           if (
+            this.state.isLoading ||
             !_.isEqual(
               newState.tasks.map(t => _.pick(t, ['id', 'title', 'done'])),
               this.state.tasks.map(t => _.pick(t, ['id', 'title', 'done']))
@@ -67,34 +62,9 @@ class App extends React.Component {
       );
   }
 
-  // Close and reset all modals
-  resetModals() {
-    this.setState({
-      taskModalID: null,
-      taskModalOpen: false,
-
-      tagModalOpen: false
-    });
-  }
-
   render() {
     if (this.state.isLoading) {
       return <div className="has-text-centered">Loading...</div>;
-    }
-
-    let taskModal;
-    if (this.state.taskModalOpen) {
-      taskModal = (
-        <TaskModal
-          taskModalOpen={this.state.taskModalOpen}
-          taskModalID={this.state.taskModalID}
-          resetModals={this.resetModals}
-
-          tasks={this.state.tasks}
-          tags={this.state.tags}
-          taskHandlers={taskHandlers(this)}
-        />
-      );
     }
 
     return (
@@ -116,8 +86,6 @@ class App extends React.Component {
           taskHandlers={taskHandlers(this)}
           tagHandlers={tagHandlers(this)}
         />
-
-        {taskModal}
       </div>
     );
   }

@@ -1,8 +1,32 @@
 const React = require('react');
 
 const Tag = require('./Tag');
+const TaskForm = require('./TaskForm');
 
 class Task extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      isEditing: false
+    }
+
+    this.handleCancelButton = this.handleCancelButton.bind(this);
+    this.handleEditButton = this.handleEditButton.bind(this);
+  }
+
+  handleCancelButton() {
+    this.setState({
+      isEditing: false
+    });
+  }
+
+  handleEditButton() {
+    this.setState({
+      isEditing: true
+    });
+  }
+
   render() {
     const task = this.props.task;
 
@@ -13,6 +37,17 @@ class Task extends React.Component {
           tag={this.props.tag}
           filtered={this.props.filterTag === this.props.tag.id}
           handleFilterButton={() => this.props.tagHandlers.handleFilterButton(this.props.tag)}
+        />
+      );
+    }
+
+    if (this.state.isEditing) {
+      return (
+        <TaskForm
+          task={task}
+          tags={this.props.tags}
+          taskHandlers={this.props.taskHandlers}
+          handleCancelButton={this.handleCancelButton}
         />
       );
     }
@@ -37,7 +72,7 @@ class Task extends React.Component {
         <div className="media-right buttons">
           <a
             className="button is-small is-outlined is-link"
-            onClick={this.props.handleEditButton}
+            onClick={this.handleEditButton}
           >
             <span className="icon">
               <i className="fas fa-pencil-alt"></i>

@@ -14,6 +14,17 @@ $common-spacing: 1em;
 }
 
 // Components
+header {
+  margin: $common-spacing 0 $common-spacing * 2;
+
+  img {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+}
+
 .sidebar {
   .overview {
     h1 span {

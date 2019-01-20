@@ -7,6 +7,7 @@ const tagHandlers = require('./handlers/tagHandlers');
 const taskHandlers = require('./handlers/taskHandlers');
 
 const Error = require('./components/Error');
+const Header = require('./components/Header');
 const Sidebar = require('./components/Sidebar');
 const TaskList = require('./components/TaskList');
 
@@ -101,6 +102,8 @@ class App extends React.Component {
     return (
       <div id="app">
         {error}
+
+        <Header />
 
         <div className="columns">
           <Sidebar

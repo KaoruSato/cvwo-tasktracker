@@ -1,4 +1,5 @@
 const api = require('../utilities/api');
+const sorter = require('../utilities/sorter');
 
 module.exports = (env) => {
   const taskHandlers = {
@@ -78,7 +79,7 @@ module.exports = (env) => {
           })
         }
 
-        return newState;
+        return sorter(newState);
       });
 
       // Persist to backend

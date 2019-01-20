@@ -2,6 +2,7 @@ const React = require('react');
 const _ = require('lodash');
 
 const api = require('./utilities/api');
+const sorter = require('./utilities/sorter');
 const tagHandlers = require('./handlers/tagHandlers');
 const taskHandlers = require('./handlers/taskHandlers');
 
@@ -35,13 +36,14 @@ class App extends React.Component {
       .then(res => res.json())
       .then(
         res => {
-          const newState = {
-            tasks: res.tasks.sort((a, b) => b.id < a.id ? -1 : 1),
-            tags: res.tags.sort((a, b) => b.id < a.id ? -1 : 1),
+          const newState = sorter({
+            tasks: res.tasks,
+            tags: res.tags,
             isLoading: false
-          }
+          });
 
-          // Re-render only if received state is different from current state
+
+          // Check if new state is different from current state before re-rendering
           if (
             this.state.isLoading ||
             !_.isEqual(
@@ -64,7 +66,7 @@ class App extends React.Component {
 
   render() {
     if (this.state.isLoading) {
-      return <div className="has-text-centered">Loading...</div>;
+      return <div className="banner">Loading...</div>;
     }
 
     return (

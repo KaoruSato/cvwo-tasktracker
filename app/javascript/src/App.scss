@@ -2,11 +2,11 @@
 $common-spacing: 1em;
 
 // Global
-#root {
+#app {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: $common-spacing;
 }
 
 .tag {
@@ -33,6 +33,19 @@ $common-spacing: 1em;
     .is-light {
       color: #b5b5b5;
     }
+  }
+}
+
+.error {
+  position: absolute;
+  z-index: 5;
+  width: 400px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+
+  span {
+    white-space: pre-line;
   }
 }
 

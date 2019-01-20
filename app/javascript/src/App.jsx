@@ -6,8 +6,13 @@ const sorter = require('./utilities/sorter');
 const tagHandlers = require('./handlers/tagHandlers');
 const taskHandlers = require('./handlers/taskHandlers');
 
+const Error = require('./components/Error');
 const Sidebar = require('./components/Sidebar');
 const TaskList = require('./components/TaskList');
+
+// Styles
+require('bulma');
+require('../src/App.scss');
 
 class App extends React.Component {
   constructor(props) {
@@ -15,6 +20,7 @@ class App extends React.Component {
 
     this.state = {
       isLoading: true,
+      error: null,
 
       tasks: [],
       tags: [],
@@ -24,6 +30,7 @@ class App extends React.Component {
     }
 
     this.fetchAll = this.fetchAll.bind(this);
+    this.resetError = this.resetError.bind(this);
   }
 
   componentDidMount() {
@@ -42,7 +49,6 @@ class App extends React.Component {
             isLoading: false
           });
 
-
           // Check if new state is different from current state before re-rendering
           if (
             this.state.isLoading ||
@@ -59,9 +65,22 @@ class App extends React.Component {
           }
         },
         err => {
-          console.error(err);
+          throw err;
         }
-      );
+      ).catch(err => {
+        this.setState({
+          error: err.toString(),
+          isLoading: false
+        });
+
+        console.error(err);
+      });
+  }
+
+  resetError() {
+    this.setState({
+      error: null
+    });
   }
 
   render() {
@@ -69,25 +88,39 @@ class App extends React.Component {
       return <div className="banner">Loading...</div>;
     }
 
-    return (
-      <div className="columns">
-        <Sidebar
-          tasks={this.state.tasks}
-          tags={this.state.tags}
-          filterTerm={this.state.filterTerm}
-          filterTag={this.state.filterTag}
-          taskHandlers={taskHandlers(this)}
-          tagHandlers={tagHandlers(this)}
+    let error;
+    if (this.state.error) {
+      error = (
+        <Error
+          error={this.state.error}
+          resetError={this.resetError}
         />
+      );
+    }
 
-        <TaskList
-          tasks={this.state.tasks}
-          tags={this.state.tags}
-          filterTerm={this.state.filterTerm}
-          filterTag={this.state.filterTag}
-          taskHandlers={taskHandlers(this)}
-          tagHandlers={tagHandlers(this)}
-        />
+    return (
+      <div id="app">
+        {error}
+
+        <div className="columns">
+          <Sidebar
+            tasks={this.state.tasks}
+            tags={this.state.tags}
+            filterTerm={this.state.filterTerm}
+            filterTag={this.state.filterTag}
+            taskHandlers={taskHandlers(this)}
+            tagHandlers={tagHandlers(this)}
+          />
+
+          <TaskList
+            tasks={this.state.tasks}
+            tags={this.state.tags}
+            filterTerm={this.state.filterTerm}
+            filterTag={this.state.filterTag}
+            taskHandlers={taskHandlers(this)}
+            tagHandlers={tagHandlers(this)}
+          />
+        </div>
       </div>
     );
   }

@@ -11,7 +11,3 @@
 const ReactRailsUJS = require('react_ujs');
 const componentRequireContext = require.context('../src', true);
 ReactRailsUJS.useContext(componentRequireContext);
-
-// Styles
-require('bulma');
-require('../src/App.scss');

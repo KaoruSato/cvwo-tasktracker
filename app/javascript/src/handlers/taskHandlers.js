@@ -16,9 +16,16 @@ module.exports = (env) => {
             env.fetchAll();
           },
           err => {
-            console.error(err);
+            throw err;
           }
-        );
+        )
+        .catch(err => {
+          env.setState({
+            error: err.toString()
+          });
+
+          console.error(err);
+        });
     },
 
     handleDeleteButton: (task) => {
@@ -39,9 +46,16 @@ module.exports = (env) => {
               env.fetchAll();
             },
             err => {
-              console.error(err);
+              throw err;
             }
-          );
+          )
+          .catch(err => {
+            env.setState({
+              error: err.toString()
+            });
+
+            console.error(err);
+          });
       }
     },
 
@@ -89,9 +103,16 @@ module.exports = (env) => {
             env.fetchAll();
           },
           err => {
-            console.error(err);
+            throw err;
           }
-        );
+        )
+        .catch(err => {
+          env.setState({
+            error: err.toString()
+          });
+
+          console.error(err);
+        });
     }
   }
 

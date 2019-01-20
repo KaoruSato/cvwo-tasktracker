@@ -10,9 +10,16 @@ module.exports = (env) => {
             env.fetchAll();
           },
           err => {
-            console.error(err);
+            throw err;
           }
-        );
+        )
+        .catch(err => {
+          env.setState({
+            error: err.toString()
+          });
+
+          console.error(err);
+        });
     },
 
     handleDeleteButton: (tag) => {
@@ -38,9 +45,16 @@ module.exports = (env) => {
               env.fetchAll();
             },
             err => {
-              console.error(err);
+              throw err;
             }
-          );
+          )
+          .catch(err => {
+            env.setState({
+              error: err.toString()
+            });
+
+            console.error(err);
+          });
       }
     },
 

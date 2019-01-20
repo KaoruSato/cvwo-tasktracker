@@ -10,6 +10,7 @@ const Error = require('./components/Error');
 const Header = require('./components/Header');
 const Sidebar = require('./components/Sidebar');
 const TaskList = require('./components/TaskList');
+const Footer = require('./components/Footer');
 
 // Styles
 require('bulma');
@@ -124,6 +125,8 @@ class App extends React.Component {
             tagHandlers={tagHandlers(this)}
           />
         </div>
+
+        <Footer />
       </div>
     );
   }

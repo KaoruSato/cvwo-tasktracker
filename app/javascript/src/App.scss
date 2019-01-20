@@ -1,5 +1,6 @@
 // Variables
 $common-spacing: 1em;
+$light-grey: #b5b5b5;
 
 // Global
 #app {
@@ -39,10 +40,10 @@ header {
   }
 
   .task-done {
-    color: #b5b5b5;
+    color: $light-grey;
 
     .is-light {
-      color: #b5b5b5;
+      color: $light-grey;
     }
   }
 }
@@ -65,4 +66,8 @@ header {
   width: 100%;
   text-align: center;
   margin: $common-spacing * 2 0;
+}
+
+footer {
+  color: $light-grey;
 }

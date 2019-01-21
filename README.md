@@ -1,9 +1,11 @@
 # ![](app/javascript/src/images/logo.png)
 [![CircleCI](https://circleci.com/gh/dvrylc/cvwo-tasktracker.svg?style=svg)](https://circleci.com/gh/dvrylc/cvwo-tasktracker) [![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge)](https://cvwo-tasktracker.herokuapp.com)
 
-## Basic Info
+## Details
 - Name: Chan Kok Jing, Daryl
 - Matriculation number: A0183998B
+- [Mid-assignment Write-up](writeups/Mid-assignment%20Write-up.pdf)
+- [Final Write-up](writeups/Final%20Write-up.pdf)
 
 ![](https://i.imgur.com/RTnF2X1.png)
 

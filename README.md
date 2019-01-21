@@ -226,6 +226,8 @@
   <p>
 
   ```json
+  200 OK
+
   {
     "id": 1,
     "title": "Eat lunch",

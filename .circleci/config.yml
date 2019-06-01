@@ -114,7 +114,7 @@ workflows:
   version: 2
   setup_and_test:
     jobs:
-      - setup
-      - test:
+      - build
+      - deploy:
           requires:
-            - setup
+            - build

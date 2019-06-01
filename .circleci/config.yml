@@ -88,3 +88,33 @@ jobs:
           path: ~/tasktracker/coverage
           destination: coverage
           
+  deploy:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy to Heroku
+          command: |
+            cat >~/.netrc <<EOF
+            machine api.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+            machine git.heroku.com
+              login $HEROKU_EMAIL
+              password $HEROKU_API_KEY
+            EOF
+            chmod 600 ~/.netrc
+            curl https://cli-assets.heroku.com/install.sh | sh
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/rails-app-japan.git master
+            heroku run rake db:migrate -a rails-app-japan
+          no_output_timeout: 10m          
+          
+workflows:
+  version: 2
+  setup_and_test:
+    jobs:
+      - setup
+      - test:
+          requires:
+            - setup
